@@ -24,10 +24,10 @@ def take_commands():
             print("Recognizing")
 
             # for listening the command in  english
-            Query = r.recognize_google(audio, language='en')
+            Query = r.recognize_google(audio, language='en-US')
 
             # for printing the query or the command that we give
-            print("The query is printed='", Query, "'")
+            print("The Inline query is printed'", Query, "'")
         except Exception as e:
 
             # this method is for handling the exception
@@ -84,23 +84,23 @@ def tellHour():
 
     if time < 12 and time >= 5:
         print(day_time[1])
-        Speak(day_time[1])
+        Speak("Good"+ day_time[1]+"Sir")
 
     if time == 12:
         print(day_time[2])
-        Speak(day_time[2])
+        Speak("Good"+ day_time[2]+"Sir")
 
     if time > 12 and time <= 17:
         print(day_time[3])
-        Speak(day_time[3])
+        Speak("Good"+ day_time[3]+"Sir")
 
     if time > 17 and time <= 21:
         print(day_time[4])
-        Speak(day_time[4])
+        Speak("Good"+ day_time[4]+"Sir")
 
     if time > 21 and time <= 4:
         print(day_time[5])
-        Speak(day_time[5])
+        Speak("Good"+ day_time[5]+"Sir")
 
 
 # Driver Code
