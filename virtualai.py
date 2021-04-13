@@ -23,8 +23,8 @@ def take_commands():
         try:
             print("Recognizing")
               
-            # for listening the command in indian english
-            Query = r.recognize_google(audio, language='en-in')
+            # for listening the command in  english
+            Query = r.recognize_google(audio, language='en')
               
             # for printing the query or the command that we give
             print("the query is printed='", Query, "'")
@@ -46,7 +46,7 @@ def Speak(audio):
       
     # getter and setter method
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[1].id)
+    engine.setProperty('voice', voices[0].id)
     engine.say(audio)
     engine.runAndWait()
   
@@ -76,5 +76,5 @@ if __name__ == '__main__':
       
     if "day" in command:
         tellDay()
-        Speak()
+    
         
