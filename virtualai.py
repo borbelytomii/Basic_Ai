@@ -78,7 +78,12 @@ def tellDay():
         Speak("The day is " + day_of_the_week)
 
 
-def tellHour():
+def tellTime():
+
+    hour = datetime.datetime.today().hour
+    minutes = datetime.datetime.today().minute
+    
+    todaystime=("It's:")+hour+minutes
 
     time = datetime.datetime.now().hour
     print(time)
@@ -88,23 +93,23 @@ def tellHour():
 
     if time < 12 and time >= 5:
         print(day_time[1])
-        Speak("Good" + day_time[1]+"Sir")
+        Speak("Good" + day_time[1]+"Sir"+todaystime)
 
     if time == 12:
         print(day_time[2])
-        Speak("Good" + day_time[2]+"Sir")
+        Speak("Good" + day_time[2]+"Sir"+todaystime)
 
     if time > 12 and time <= 17:
         print(day_time[3])
-        Speak("Good" + day_time[3]+"Sir")
+        Speak("Good" + day_time[3]+"Sir"+todaystime)
 
     if time > 17 and time <= 21:
         print(day_time[4])
-        Speak("Good" + day_time[4]+"Sir")
+        Speak("Good" + day_time[4]+"Sir"+todaystime)
 
     if time > 21 and time <= 4:
         print(day_time[5])
-        Speak("Good" + day_time[5]+"Sir")
+        Speak("Good" + day_time[5]+"Sir"+todaystime)
 
 
 def tellCity():
@@ -166,11 +171,11 @@ if __name__ == '__main__':
     command = take_commands()
     if "Jarvis" in command:
         tellDay()
-        tellHour()
+        tellTime()
         tellWeather()
     if "day" in command:
         tellDay()
-        tellHour()
+        tellTime()
     if "weather" in command:
         #tellCity()
         tellWeather()
