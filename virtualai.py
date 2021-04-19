@@ -83,7 +83,7 @@ def tellTime():
     hour = datetime.datetime.today().hour
     minutes = datetime.datetime.today().minute
     
-    todaystime=hour+minutes
+    
 
     time = datetime.datetime.now().hour
     print(time)
@@ -93,23 +93,23 @@ def tellTime():
 
     if time < 12 and time >= 5:
         print(day_time[1])
-        Speak("Good" + day_time[1]+"Sir"+"It's"+todaystime)
+        Speak("Good" + day_time[1]+"Sir"+"It's"+hour+minutes)
 
     if time == 12:
         print(day_time[2])
-        Speak("Good" + day_time[2]+"Sir"+"It's"+todaystime)
+        Speak("Good" + day_time[2]+"Sir"+"It's"+hour+minutes)
 
     if time > 12 and time <= 17:
         print(day_time[3])
-        Speak("Good" + day_time[3]+"Sir"+"It's"+todaystime)
+        Speak("Good" + day_time[3]+"Sir"+"It's"+hour+minutes)
 
     if time > 17 and time <= 21:
         print(day_time[4])
-        Speak("Good" + day_time[4]+"Sir"+"It's"+todaystime)
+        Speak("Good" + day_time[4]+"Sir"+"It's"+hour+minutes)
 
     if time > 21 and time <= 4:
         print(day_time[5])
-        Speak("Good" + day_time[5]+"Sir"+"It's"+todaystime)
+        Speak("Good" + day_time[5]+"Sir"+"It's"+hour+minutes)
 
 
 def tellCity():
