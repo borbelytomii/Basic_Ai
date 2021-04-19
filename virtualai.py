@@ -80,36 +80,46 @@ def tellDay():
 
 def tellTime():
 
-    hour = datetime.datetime.today().hour
-    minutes = datetime.datetime.today().minute
+    hour = str(datetime.datetime.today().hour)
+    minutes = str(datetime.datetime.today().minute)
     
     
 
     time = datetime.datetime.now().hour
-    print(time)
+    #print(time)
 
     day_time = {1: 'Morning', 2: 'Noon',
                 3: 'Afternoon', 4: 'Evening', 5: 'Night'}
 
     if time < 12 and time >= 5:
         print(day_time[1])
-        Speak("Good" + day_time[1]+"Sir"+"It's"+hour+minutes)
+        Speak("Good" + day_time[1]+"Sir")
+        print("It's: "+hour+": "+minutes)
+        Speak("It's: "+hour+": "+minutes)
 
     if time == 12:
         print(day_time[2])
-        Speak("Good" + day_time[2]+"Sir"+"It's"+hour+minutes)
+        Speak("Good" + day_time[2]+"Sir")
+        print("It's: "+hour+": "+minutes)
+        Speak("It's: "+hour+": "+minutes)
 
     if time > 12 and time <= 17:
         print(day_time[3])
-        Speak("Good" + day_time[3]+"Sir"+"It's"+hour+minutes)
+        Speak("Good" + day_time[3]+"Sir")
+        print("It's: "+hour+": "+minutes)
+        Speak("It's: "+hour+": "+minutes)
 
     if time > 17 and time <= 21:
         print(day_time[4])
-        Speak("Good" + day_time[4]+"Sir"+"It's"+hour+minutes)
+        Speak("Good" + day_time[4]+"Sir")
+        print("It's: "+hour+": "+minutes)
+        Speak("It's: "+hour+": "+minutes)
 
     if time > 21 and time <= 4:
         print(day_time[5])
-        Speak("Good" + day_time[5]+"Sir"+"It's"+hour+minutes)
+        Speak("Good" + day_time[5]+"Sir")
+        print("It's: "+hour+": "+minutes)
+        Speak("It's: "+hour+": "+minutes)
 
 
 def tellCity():
