@@ -52,8 +52,7 @@ def Speak(audio):
 
     # getter and setter method
     voices = engine.getProperty('voices')
-    for voice in voices:
-        engine.setProperty('voice', voice.id)
+    engine.setProperty('voice', voices[0].id)
     engine.say(audio)
     engine.runAndWait()
 
@@ -165,10 +164,13 @@ def tellWeather():
 # Driver Code
 if __name__ == '__main__':
     command = take_commands()
-
+    if "Jarvis" in command:
+        tellDay()
+        tellHour()
+        tellWeather()
     if "day" in command:
         tellDay()
         tellHour()
     if "weather" in command:
-        tellCity()
+        #tellCity()
         tellWeather()
