@@ -1,11 +1,12 @@
 #import modules
-
+from gtts import gTTS
+import speech_recognition as sr
+import playsound
+import requests
 import config as api
 import datetime
-import pyttsx3
-import speech_recognition as sr
-import requests
 from pprint import pprint
+#import pyttsx3
 
 # API_KEY='' in config.py
 api.API_KEY
@@ -45,7 +46,7 @@ def take_commands():
     return Query
 
 
-def Speak(audio):
+#def Speak(audio):
 
     # intial constructor of pyttsx3
     engine = pyttsx3.init()
@@ -55,6 +56,15 @@ def Speak(audio):
     engine.setProperty('voice', voices[0].id)
     engine.say(audio)
     engine.runAndWait()
+#Best
+def Speak(text):
+    tts=gTTS(text=text, lang='en')
+    filename='voice.mp3'
+    tts.save(filename)
+    playsound.playsound(filename)
+
+
+ 
 
 
 def tellDay():
@@ -169,10 +179,12 @@ def tellWeather():
     description = data['weather'][0]['description']
 
     #Callouts
+    Speak('Temperature : {} degree celcius'.format(temp))
     print('Temperature : {} degree celcius'.format(temp))
     print('Wind Speed : {} m/s'.format(wind_speed))
     print('Latitude : {}'.format(latitude))
     print('Longitude : {}'.format(longitude))
+    Speak('Description : {}'.format(description))
     print('Description : {}'.format(description))
 
 
