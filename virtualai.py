@@ -65,7 +65,9 @@ def Speak(text):
 
 
  
-
+def Startup():
+    startup='startup.mp3'
+    playsound.playsound(startup)
 
 def tellDay():
 
@@ -190,6 +192,7 @@ def tellWeather():
 
 # Driver Code
 if __name__ == '__main__':
+    Startup()
     command = take_commands()
     if "Jarvis" in command:
         tellDay()
