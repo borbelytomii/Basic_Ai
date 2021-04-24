@@ -57,17 +57,19 @@ def take_commands():
     engine.say(audio)
     engine.runAndWait()
 #Best
+
+
 def Speak(text):
-    tts=gTTS(text=text, lang='en')
-    filename='voice.mp3'
+    tts = gTTS(text=text, lang='en')
+    filename = 'sounds/voice.mp3'
     tts.save(filename)
     playsound.playsound(filename)
 
 
- 
 def Startup():
-    startup='startup.mp3'
+    startup = 'sounds/startup.mp3'
     playsound.playsound(startup)
+
 
 def tellDay():
 
@@ -94,8 +96,6 @@ def tellTime():
 
     hour = str(datetime.datetime.today().hour)
     minutes = str(datetime.datetime.today().minute)
-    
-    
 
     time = datetime.datetime.now().hour
     #print(time)
@@ -163,9 +163,10 @@ def tellCity():
 
     return city_name
 
+
 def tellWeather():
     #city = input('Enter your city : ')
-    city  = tellCity()
+    city = tellCity()
     #Url address with api key
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api.API_KEY}&units=metric'
 
