@@ -194,6 +194,7 @@ def tellWeather():
 # Driver Code
 if __name__ == '__main__':
     Startup()
+
     command = take_commands()
     if "Jarvis" in command:
         tellDay()
@@ -205,3 +206,5 @@ if __name__ == '__main__':
     if "weather" in command:
         #tellCity()
         tellWeather()
+    
+#while tellCommands()!='Yes':
