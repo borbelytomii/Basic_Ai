@@ -190,10 +190,53 @@ def tellWeather():
     Speak('Description : {}'.format(description))
     print('Description : {}'.format(description))
 
+def tellCommands():
+    #City name
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        print('Listening')
+
+        # seconds of non-speaking audio before
+        # a phrase is considered complete
+        r.pause_threshold = 0.7
+        audio = r.listen(source)
+        try:
+            print("Recognizing.. ")
+
+            voice_command = r.recognize_google(audio, language='en-US')
+
+            # for printing the name of the city
+            print("The command'", voice_command, "'")
+        except Exception as e:
+
+            # this method is for handling the exception
+            # and so that assistant can ask for telling
+            # again the command
+            print(e)
+            Speak("Say that again sir")
+            return "None"
+
+    return voice_command
 
 # Driver Code
 if __name__ == '__main__':
     Startup()
+<<<<<<< HEAD
+    Speak("How Can I help you today Sir?")
+    while tellCommands()!='Yes':
+        command = take_commands()
+        if "morning protocol" in command:
+            tellDay()
+            tellTime()
+            tellWeather()
+        if "day" in command:
+            tellDay()
+            tellTime()
+        if "weather" in command:
+        #tellCity()
+            tellWeather()
+=======
 
     command = take_commands()
     if "Jarvis" in command:
@@ -208,3 +251,4 @@ if __name__ == '__main__':
         tellWeather()
     
 #while tellCommands()!='Yes':
+>>>>>>> e8581f577e20d385b60075fbdd9ef03916c94cbe
