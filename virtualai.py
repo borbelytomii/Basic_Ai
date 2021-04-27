@@ -222,7 +222,6 @@ def tellCommands():
 # Driver Code
 if __name__ == '__main__':
     Startup()
-<<<<<<< HEAD
     Speak("How Can I help you today Sir?")
     while tellCommands()!='Yes':
         command = take_commands()
@@ -236,19 +235,3 @@ if __name__ == '__main__':
         if "weather" in command:
         #tellCity()
             tellWeather()
-=======
-
-    command = take_commands()
-    if "Jarvis" in command:
-        tellDay()
-        tellTime()
-        tellWeather()
-    if "day" in command:
-        tellDay()
-        tellTime()
-    if "weather" in command:
-        #tellCity()
-        tellWeather()
-    
-#while tellCommands()!='Yes':
->>>>>>> e8581f577e20d385b60075fbdd9ef03916c94cbe
