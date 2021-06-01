@@ -106,8 +106,10 @@ def Worktime():
         today=day_of_the_week
         #Speak("The day is " + day_of_the_week)
 
-    if today=='Sunday' or today=='Saturday':
-	    Speak()('Today is off. Rest at home.')
+    if today=='Monday':
+	    Speak('Your weekend is over. Go to work.')
+    elif today=='Sunday' or today=='Saturday':
+	    Speak('Today is off.')
     else:
 	    Speak('Go to work.')
     
@@ -274,7 +276,7 @@ if __name__ == '__main__':
             tellTime()
             defaultWeather()
             Worktime()
-            
+
         if "day" in command:
             tellDay()
             tellTime()
