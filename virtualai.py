@@ -92,6 +92,25 @@ def tellDay():
         Speak("The day is " + day_of_the_week)
 
 
+def Worktime():
+
+    day = datetime.datetime.today().weekday() + 1
+
+    Day_dict = {1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
+                4: 'Thursday', 5: 'Friday', 6: 'Saturday',
+                7: 'Sunday'}
+
+    if day in Day_dict.keys():
+        day_of_the_week = Day_dict[day]
+        print(day_of_the_week)
+        today=day_of_the_week
+        #Speak("The day is " + day_of_the_week)
+
+    if today=='Sunday' or today=='Saturday':
+	    Speak()('Today is off. Rest at home.')
+    else:
+	    Speak('Go to work.')
+    
 def tellTime():
 
     hour = str(datetime.datetime.today().hour)
@@ -190,6 +209,31 @@ def tellWeather():
     Speak('Description : {}'.format(description))
     print('Description : {}'.format(description))
 
+def defaultWeather():
+    city = "Veszprem"
+    #Url address with api key
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api.API_KEY}&units=metric'
+
+    res = requests.get(url)
+
+    data = res.json()
+
+    temp = data['main']['temp']
+    wind_speed = data['wind']['speed']
+
+    latitude = data['coord']['lat']
+    longitude = data['coord']['lon']
+    description = data['weather'][0]['description']
+
+    #Callouts
+    Speak('Temperature : {} degree celcius'.format(temp))
+    print('Temperature : {} degree celcius'.format(temp))
+    print('Wind Speed : {} m/s'.format(wind_speed))
+    print('Latitude : {}'.format(latitude))
+    print('Longitude : {}'.format(longitude))
+    Speak('Description : {}'.format(description))
+    print('Description : {}'.format(description))
+
 def tellCommands():
     #City name
     r = sr.Recognizer()
@@ -223,15 +267,18 @@ def tellCommands():
 if __name__ == '__main__':
     Startup()
     Speak("How Can I help you today Sir?")
-    while tellCommands()!='Yes':
+    while tellCommands()!='done' or tellCommands()!='down':
         command = take_commands()
-        if "morning protocol" in command:
+        if "morning" in command:
             tellDay()
             tellTime()
-            tellWeather()
+            defaultWeather()
+            Worktime()
+            
         if "day" in command:
             tellDay()
             tellTime()
+            
         if "weather" in command:
-        #tellCity()
+        #tellCity()        
             tellWeather()
