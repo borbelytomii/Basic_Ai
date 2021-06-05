@@ -13,5 +13,3 @@
 * pip install pipwin
 * pipwin install pyaudio
 ### you need to have a OpenWeatherMap Api key
-
-* pip3 install pyttsx3

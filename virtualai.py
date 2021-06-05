@@ -6,7 +6,6 @@ import requests
 import config as api
 import datetime
 from pprint import pprint
-#import pyttsx3
 
 # API_KEY='' in config.py
 api.API_KEY
@@ -45,27 +44,14 @@ def take_commands():
 
     return Query
 
-
-#def Speak(audio):
-
-    # intial constructor of pyttsx3
-    engine = pyttsx3.init()
-
-    # getter and setter method
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[0].id)
-    engine.say(audio)
-    engine.runAndWait()
-#Best
-
-
+# Speak engine
 def Speak(text):
     tts = gTTS(text=text, lang='en')
     filename = 'sounds/voice.mp3'
     tts.save(filename)
     playsound.playsound(filename)
 
-
+# Startup sound
 def Startup():
     startup = 'sounds/startup.mp3'
     playsound.playsound(startup)
@@ -284,3 +270,4 @@ if __name__ == '__main__':
         if "weather" in command:
         #tellCity()        
             tellWeather()
+            
