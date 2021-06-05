@@ -1,4 +1,3 @@
-#import modules
 from gtts import gTTS
 import speech_recognition as sr
 import playsound
@@ -6,6 +5,7 @@ import requests
 import config as api
 import datetime
 from pprint import pprint
+
 
 # API_KEY='' in config.py
 api.API_KEY
@@ -255,7 +255,7 @@ def tellCommands():
 if __name__ == '__main__':
     Startup()
     Speak("How Can I help you today Sir?")
-    while tellCommands()!='done' or tellCommands()!='down':
+    while tellCommands()!='over':
         command = take_commands()
         if "morning" in command:
             tellDay()
@@ -270,4 +270,5 @@ if __name__ == '__main__':
         if "weather" in command:
         #tellCity()        
             tellWeather()
+        
             
