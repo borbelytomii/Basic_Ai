@@ -2,3 +2,5 @@ __pycache__
 sounds/voice.mp3
 config.py 
 test
+.gitignore
+.vscode

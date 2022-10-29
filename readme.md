@@ -1,6 +1,11 @@
 # Basic Ai
 ## This a basic weather and day app with same Ai api's
-### you need to install  
+* Docker
+* Native install
+### Docker
+* docker image build -t < imagename:tag> .\docker\ 
+
+### For native use need to install  
 #### for linux
 * sudo apt-get install portaudio19-dev python-all-dev python3-all-dev && sudo pip3 install pyaudio
 * pip install SpeechRecognition

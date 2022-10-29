@@ -1,12 +1,16 @@
-from gtts import gTTS
 import speech_recognition as sr
-import playsound
 import requests
-import config as api
 import datetime
+import sys
+import os
+from winsound import PlaySound
+from gtts import gTTS
+from playsound import playsound
 from pprint import pprint
-
-
+from os.path import dirname, abspath
+d = dirname((dirname(abspath(__file__))))
+sys.path.append(d)
+import config as api
 # API_KEY='' in config.py
 api.API_KEY
 
@@ -45,16 +49,21 @@ def take_commands():
     return Query
 
 # Speak engine
+
+
 def Speak(text):
     tts = gTTS(text=text, lang='en')
     filename = 'sounds/voice.mp3'
     tts.save(filename)
-    playsound.playsound(filename)
+    playsound(filename)
+    os.remove(filename)
 
 # Startup sound
+
+
 def Startup():
     startup = 'sounds/startup.mp3'
-    playsound.playsound(startup)
+    playsound(startup)
 
 
 def tellDay():
@@ -89,23 +98,24 @@ def Worktime():
     if day in Day_dict.keys():
         day_of_the_week = Day_dict[day]
         print(day_of_the_week)
-        today=day_of_the_week
+        #todays_day = day_of_the_week
         #Speak("The day is " + day_of_the_week)
 
-    if today=='Monday':
-	    Speak('Your weekend is over. Go to work.')
-    elif today=='Sunday' or today=='Saturday':
-	    Speak('Today is off.')
-    else:
-	    Speak('Go to work.')
-    
+        if day_of_the_week == 'Monday':
+            Speak('Your weekend is over. Go to work.')
+        elif day_of_the_week == 'Sunday' or day_of_the_week == 'Saturday':
+            Speak('Today is off.')
+        else:
+            Speak('Go to work.')
+
+
 def tellTime():
 
     hour = str(datetime.datetime.today().hour)
     minutes = str(datetime.datetime.today().minute)
 
     time = datetime.datetime.now().hour
-    #print(time)
+    # print(time)
 
     day_time = {1: 'Morning', 2: 'Noon',
                 3: 'Afternoon', 4: 'Evening', 5: 'Night'}
@@ -142,7 +152,7 @@ def tellTime():
 
 
 def tellCity():
-    #City name
+    # City name
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -174,7 +184,7 @@ def tellCity():
 def tellWeather():
     #city = input('Enter your city : ')
     city = tellCity()
-    #Url address with api key
+    # Url address with api key
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api.API_KEY}&units=metric'
 
     res = requests.get(url)
@@ -188,7 +198,7 @@ def tellWeather():
     longitude = data['coord']['lon']
     description = data['weather'][0]['description']
 
-    #Callouts
+    # Callouts
     Speak('Temperature : {} degree celcius'.format(temp))
     print('Temperature : {} degree celcius'.format(temp))
     print('Wind Speed : {} m/s'.format(wind_speed))
@@ -196,10 +206,11 @@ def tellWeather():
     print('Longitude : {}'.format(longitude))
     Speak('Description : {}'.format(description))
     print('Description : {}'.format(description))
+
 
 def defaultWeather():
     city = "Veszprem"
-    #Url address with api key
+    # Url address with api key
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api.API_KEY}&units=metric'
 
     res = requests.get(url)
@@ -213,7 +224,7 @@ def defaultWeather():
     longitude = data['coord']['lon']
     description = data['weather'][0]['description']
 
-    #Callouts
+    # Callouts
     Speak('Temperature : {} degree celcius'.format(temp))
     print('Temperature : {} degree celcius'.format(temp))
     print('Wind Speed : {} m/s'.format(wind_speed))
@@ -222,8 +233,9 @@ def defaultWeather():
     Speak('Description : {}'.format(description))
     print('Description : {}'.format(description))
 
+
 def tellCommands():
-    #City name
+    # City name
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -251,11 +263,12 @@ def tellCommands():
 
     return voice_command
 
+
 # Driver Code
 if __name__ == '__main__':
     Startup()
     Speak("How Can I help you today Sir?")
-    while tellCommands()!='over':
+    while tellCommands() != 'over':
         command = take_commands()
         if "morning" in command:
             tellDay()
@@ -266,9 +279,7 @@ if __name__ == '__main__':
         if "day" in command:
             tellDay()
             tellTime()
-            
+
         if "weather" in command:
-        #tellCity()        
+            # tellCity()
             tellWeather()
-        
-            
